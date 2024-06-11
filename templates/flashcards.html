@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Flashcards</h1>
+        <button id="toggleTheme" onclick="toggleTheme()">Toggle Dark Mode</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Word</th>
+                    <th>Translation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for flashcard in flashcards %}
+                <tr>
+                    <td>{{ flashcard[0] }}</td>
+                    <td class="translation">{{ flashcard[1] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/" onclick="returnToReader()">Back to Reader</a>
+    </div>
+    <script>
+        function returnToReader() {
+            window.location.href = '/';
+        }
+
+        // Restore theme on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+    </script>
+</body>
+</html>
